@@ -1,0 +1,746 @@
+[
+  {
+    "name": "张哲",
+    "balance": null,
+    "expenditure": 226,
+    "payType": "微信",
+    "payReason": "买蛋糕",
+    "createTime": "2022-01-01"
+  },
+  {
+    "name": "张哲",
+    "balance": null,
+    "expenditure": 71.41,
+    "payType": "微信",
+    "payReason": "买水果",
+    "createTime": "2022-01-05"
+  },
+  {
+    "name": "张哲",
+    "balance": null,
+    "expenditure": 21,
+    "payType": "微信",
+    "payReason": "买奶茶(赵)",
+    "createTime": "2022-01-05"
+  },
+  {
+    "name": "张哲",
+    "balance": null,
+    "expenditure": 25,
+    "payType": "微信",
+    "payReason": "买奶茶(顾)",
+    "createTime": "2022-01-05"
+  },
+  {
+    "name": "陈虎",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "周报",
+    "createTime": "2022-01-10"
+  },
+  {
+    "name": "潘维健",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "周报",
+    "createTime": "2022-01-13"
+  },
+  {
+    "name": "刘婷",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-01-13"
+  },
+  {
+    "name": "毛泽威",
+    "balance": 21,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-01-13"
+  },
+  {
+    "name": "沈健力",
+    "balance": 27,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-01-14"
+  },
+  {
+    "name": "沈健力",
+    "balance": 23,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-01-18"
+  },
+  {
+    "name": "沈健力",
+    "balance": 42,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-01-21"
+  },
+  {
+    "name": "辛蒙蒙",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-01-24"
+  },
+  {
+    "name": "黄秀娟",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-01-24"
+  },
+  {
+    "name": "朱嘉仑",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-01-24"
+  },
+  {
+    "name": "沈健力",
+    "balance": 25,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-01-24"
+  },
+  {
+    "name": "刘婷",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "周报",
+    "createTime": "2022-01-24"
+  },
+  {
+    "name": "朱嘉仑",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-01-25"
+  },
+  {
+    "name": "沈健力",
+    "balance": 22,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-01-26"
+  },
+  {
+    "name": "毛泽威",
+    "balance": 21,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-02-14"
+  },
+  {
+    "name": "蔡逍侠",
+    "balance": null,
+    "expenditure": 207.58,
+    "payType": "微信",
+    "payReason": "零食",
+    "createTime": "2022-02-16"
+  },
+  {
+    "name": "张哲",
+    "balance": null,
+    "expenditure": 29.8,
+    "payType": "支付宝",
+    "payReason": "零食",
+    "createTime": "2022-02-16"
+  },
+  {
+    "name": "毛泽威",
+    "balance": 21,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-02-17"
+  },
+  {
+    "name": "沈健力",
+    "balance": 22,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-02-18"
+  },
+  {
+    "name": "沈健力",
+    "balance": 25,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-02-21"
+  },
+  {
+    "name": "黄秀娟",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-02-21"
+  },
+  {
+    "name": "沈健力",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-02-22"
+  },
+  {
+    "name": "毛泽威",
+    "balance": 22,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-02-22"
+  },
+  {
+    "name": "沈健力",
+    "balance": 23,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-01"
+  },
+  {
+    "name": "潘维健",
+    "balance": 21,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-03"
+  },
+  {
+    "name": "沈健力",
+    "balance": 24,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-03"
+  },
+  {
+    "name": "毛泽威",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-04"
+  },
+  {
+    "name": "王刘梦",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-04"
+  },
+  {
+    "name": "沈健力",
+    "balance": 22,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-04"
+  },
+  {
+    "name": "潘维健",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-07"
+  },
+  {
+    "name": "黄秀娟",
+    "balance": 24,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-07"
+  },
+  {
+    "name": "刘婷",
+    "balance": 24,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-07"
+  },
+  {
+    "name": "沈健力",
+    "balance": 24,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-07"
+  },
+  {
+    "name": "王刘梦",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-08"
+  },
+  {
+    "name": "辛蒙蒙",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-08"
+  },
+  {
+    "name": "沈健力",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-08"
+  },
+  {
+    "name": "张哲",
+    "balance": null,
+    "expenditure": 231.4,
+    "payType": "支付宝",
+    "payReason": "零食",
+    "createTime": "2022-03-09"
+  },
+  {
+    "name": "王刘梦",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-11"
+  },
+  {
+    "name": "沈健力",
+    "balance": 24,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-14"
+  },
+  {
+    "name": "刘婷",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-15"
+  },
+  {
+    "name": "王刘梦",
+    "balance": null,
+    "expenditure": 18,
+    "payType": "微信",
+    "payReason": "大屏模板",
+    "createTime": "2022-03-16"
+  },
+  {
+    "name": "刘婷",
+    "balance": 23,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-17"
+  },
+  {
+    "name": "沈健力",
+    "balance": 23,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-18"
+  },
+  {
+    "name": "黄秀娟",
+    "balance": 25,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-21"
+  },
+  {
+    "name": "沈健力",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-23"
+  },
+  {
+    "name": "朱嘉仑",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-23"
+  },
+  {
+    "name": "王刘梦",
+    "balance": 26,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-25"
+  },
+  {
+    "name": "沈健力",
+    "balance": 29,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-25"
+  },
+  {
+    "name": "张哲",
+    "balance": null,
+    "expenditure": 302.8,
+    "payType": "支付宝",
+    "payReason": "零食",
+    "createTime": "2022-03-30"
+  },
+  {
+    "name": "王刘梦",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-03-31"
+  },
+  {
+    "name": "朱嘉仑",
+    "balance": 21,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-04-01"
+  },
+  {
+    "name": "王刘梦",
+    "balance": 25,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-04-07"
+  },
+  {
+    "name": "王刘梦",
+    "balance": 30,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-04-08"
+  },
+  {
+    "name": "蔡逍侠",
+    "balance": null,
+    "expenditure": 236.69,
+    "payType": "支付宝",
+    "payReason": "零食",
+    "createTime": "2022-04-15"
+  },
+  {
+    "name": "朱嘉仑",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-04-19"
+  },
+  {
+    "name": "朱嘉仑",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-04-21"
+  },
+  {
+    "name": "潘维健",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-04-21"
+  },
+  {
+    "name": "戴军潇",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-04-21"
+  },
+  {
+    "name": "朱嘉仑",
+    "balance": 23,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-04-26"
+  },
+  {
+    "name": "王刘梦",
+    "balance": 30,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-04-26"
+  },
+  {
+    "name": "毛泽威",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-04-26"
+  },
+  {
+    "name": "王刘梦",
+    "balance": 23,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-04-28"
+  },
+  {
+    "name": "蔡逍侠",
+    "balance": 5,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "捐助",
+    "createTime": "2022-04-29"
+  },
+  {
+    "name": "张哲",
+    "balance": null,
+    "expenditure": 184.47,
+    "payType": "支付宝",
+    "payReason": "零食",
+    "createTime": "2022-05-06"
+  },
+  {
+    "name": "王刘梦",
+    "balance": 30,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-05-07"
+  },
+  {
+    "name": "王刘梦",
+    "balance": 21,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-05-10"
+  },
+  {
+    "name": "王刘梦",
+    "balance": 24,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-05-11"
+  },
+  {
+    "name": "张哲",
+    "balance": null,
+    "expenditure": 15.8,
+    "payType": "支付宝",
+    "payReason": "面包",
+    "createTime": "2022-05-11"
+  },
+  {
+    "name": "刘婷",
+    "balance": 23,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-05-12"
+  },
+  {
+    "name": "沈健力",
+    "balance": 25,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-05-12"
+  },
+  {
+    "name": "沈健力",
+    "balance": 27,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-05-13"
+  },
+  {
+    "name": "施齐",
+    "balance": 26,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-05-13"
+  },
+  {
+    "name": "王刘梦",
+    "balance": 30,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-05-13"
+  },
+  {
+    "name": "王刘梦",
+    "balance": 28,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-05-17"
+  },
+  {
+    "name": "王刘梦",
+    "balance": 30,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-05-18"
+  },
+  {
+    "name": "施齐",
+    "balance": 23,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-05-18"
+  },
+  {
+    "name": "王刘梦",
+    "balance": 22,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-05-19"
+  },
+  {
+    "name": "张哲",
+    "balance": null,
+    "expenditure": 264.5,
+    "payType": "支付宝",
+    "payReason": "零食",
+    "createTime": "2022-05-19"
+  },
+  {
+    "name": "王刘梦",
+    "balance": 27,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-05-20"
+  },
+  {
+    "name": "沈健力",
+    "balance": 26,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-05-20"
+  },
+  {
+    "name": "施齐",
+    "balance": 30,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-05-20"
+  },
+  {
+    "name": "毛泽威",
+    "balance": 21,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-05-23"
+  },
+  {
+    "name": "王刘梦",
+    "balance": 30,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-05-23"
+  },
+  {
+    "name": "沈健力",
+    "balance": 30,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-05-23"
+  },
+  {
+    "name": "施齐",
+    "balance": 30,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-05-23"
+  },
+  {
+    "name": "施齐",
+    "balance": 22,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-05-24"
+  },
+  {
+    "name": "沈健力",
+    "balance": 20,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-05-25"
+  },
+  {
+    "name": "戴军潇",
+    "balance": 21,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "迟到",
+    "createTime": "2022-05-25"
+  },
+  {
+    "name": "张哲",
+    "balance": 6,
+    "expenditure": null,
+    "payType": "微信",
+    "payReason": "捐款",
+    "createTime": "2022-05-25"
+  }
+]
