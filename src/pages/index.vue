@@ -1,23 +1,10 @@
 <script setup lang="ts">
+import Decimal from 'decimal.js'
+
 import dayjs from 'dayjs'
 import { first, get } from 'lodash'
 import * as echarts from 'echarts'
-
-// import data from './data.json'
-
 import req from '~/utils/request'
-
-// const dataTotal = data[2022].reduce((acc, item) => {
-//   if (acc[item.支付人])
-//     acc[item.支付人] += Number(item['收入金额'])
-//   else
-//     acc[item.支付人] = Number(item['收入金额'])
-
-//   return acc
-// }, {} as Record<string, number>)
-// const c = Object.entries(dataTotal).sort(([_, v1], [__, v2]) => v2 - v1)
-
-// const max = Math.max(...Object.entries(m).map(([, v]) => v.length))
 
 const svg = ref<HTMLDivElement>()
 const svg1 = ref<HTMLDivElement>()
@@ -32,6 +19,10 @@ const state = reactive({
       payReason: string
       payType: string
     }[],
+  total: {
+    balance: 0,
+    expenditure: 0,
+  },
 })
 const dataTotal = $computed(() => {
   return state.list.reduce((acc, item) => {
@@ -128,9 +119,15 @@ watchEffect(() => {
     },
   })
 })
+const yue = $computed(() => {
+  return new Decimal(state.total.balance).sub(state.total.expenditure).toString()
+})
 onBeforeMount(() => {
   req.get('/list').then((e) => {
     state.list = e.data
+  })
+  req.get('/total').then((e) => {
+    state.total = e.data
   })
 })
 </script>
@@ -143,6 +140,12 @@ onBeforeMount(() => {
     <div ref="svg" class="w-full h-1/2" />
     <div ref="svg1" class="w-full h-60" />
     <div class="px-2 text-sm">
+      <div class="mb-2">
+        当前余额:
+        <h1 class="text-red mx-1 text-xl">
+          {{ yue }}元
+        </h1>
+      </div>
       <div>
         <span class="text-blue mx-1">{{ value.map((e) => e[0]).join(",") }}</span>共有「<span class="text-red">{{ max
         }}</span>」人捐助了基金。生活真是苦涩又不乏趣味呢！
@@ -153,6 +156,13 @@ onBeforeMount(() => {
           get(maxDateV, "[0][1]")
 
         }}</span>元
+      </div>
+      <div>
+        今年我们一共收到<span class="text-blue mx-1">{{ state.total.balance }}</span>元的基金。
+      </div>
+      <div>
+        今年为零食买单一共
+        <span class="text-blue mx-1">{{ state.total.expenditure }}</span> 元, 有没有让我们长胖几斤呢。
       </div>
     </div>
   </div>

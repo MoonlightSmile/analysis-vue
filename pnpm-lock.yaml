@@ -11,6 +11,7 @@ specifiers:
   axios: ^0.27.2
   chart.xkcd: ^1.1.13
   dayjs: ^1.11.2
+  decimal.js: ^10.3.1
   echarts: ^5.3.2
   eslint: ^8.15.0
   jsdom: ^19.0.0
@@ -33,6 +34,7 @@ dependencies:
   axios: 0.27.2
   chart.xkcd: 1.1.13
   dayjs: 1.11.2
+  decimal.js: 10.3.1
   echarts: 5.3.2
   vue: 3.2.33
   vue-router: 4.0.15_vue@3.2.33
@@ -1339,7 +1341,6 @@ packages:
 
   /decimal.js/10.3.1:
     resolution: {integrity: sha512-V0pfhfr8suzyPGOx3nmq4aHqabehUZn6Ch9kyFpV79TGDTWFmHqUqXdabR7QHqxzrYolF4+tVmJhUG4OURg5dQ==}
-    dev: true
 
   /deep-eql/3.0.1:
     resolution: {integrity: sha512-+QeIQyN5ZuO+3Uk5DYh6/1eKO0m0YmJFGNmFHGACpf1ClL1nmlV/p4gNgbl2pJGxgXb4faqo6UE+M5ACEMyVcw==}
