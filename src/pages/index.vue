@@ -2,7 +2,7 @@
 import Decimal from 'decimal.js'
 
 import dayjs from 'dayjs'
-import { first, get } from 'lodash'
+import { first, get, last } from 'lodash'
 import * as echarts from 'echarts'
 import req from '~/utils/request'
 
@@ -60,28 +60,86 @@ watchEffect(() => {
     return
   const e = echarts.init(svg.value)
   e.setOption({
-    grid: {
-      top: 8,
-    },
+    grid: { left: 20, top: 20, bottom: 20, right: 30, containLabel: true },
+
     xAxis: {
-      type: 'category',
-
-      axisLabel: { interval: 0, rotate: 300 },
-
-      data: c.map(e => e[0]),
+      type: 'value',
+      boundaryGap: false,
+      max: 600,
+      axisLine: { show: false },
+      axisTick: { show: false },
+      splitLine: { show: false },
+      axisLabel: { show: false },
+      label: {
+        show: false,
+        position: 'top',
+      },
     },
     yAxis: {
-      type: 'value',
+      inverse: true,
+      data: c.map(e => e[0]),
+      axisLine: { show: false },
+      axisTick: { show: false },
+      splitLine: { show: false },
+
+      axisLabel: {
+        padding: [0, 0, 20, -10],
+        inside: true,
+        textStyle: {
+          fontSize: 14,
+          align: 'left',
+        },
+        formatter: '{value}\n{a|占位}',
+        rich: {
+          a: {
+            color: 'transparent',
+            lineHeight: 30,
+            fontFamily: 'digital',
+            fontSize: 14,
+          },
+        },
+      },
+
     },
+    dataZoom: [],
     series: [
       {
-        data: c.map(e => e[1]),
         type: 'bar',
         showBackground: true,
+        backgroundStyle: { color: 'transparent', borderRadius: [0, 8, 8, 0] },
+        itemStyle: {
+          color: '#52A8FF',
+          normal: {
+            borderRadius: [8, 8, 8, 8],
+            color(params) {
+              // 定义一个颜色集合
+              const colorList = [
+                '#52A8FF',
+                '#00B389',
+                '#FFA940',
+                '#FF5A57',
+                '#29EFC4',
+                '#F8AEA4',
+                '#FFC53D',
+                '#009982',
+                '#C099FC',
+                '#F5855F',
+                '#F5855F',
+                '#F5855F',
+                '#F5855F',
+                '#F5855F',
+              ]
+              // 对每个bar显示一种颜色
+              return colorList[params.dataIndex]
+            },
+          },
+        },
+        barMaxWidth: 16,
         label: {
           show: true,
-          position: 'top',
+          position: 'right',
         },
+        data: c.map(e => e[1]),
 
       },
     ],
@@ -91,6 +149,8 @@ watchEffect(() => {
 watchEffect(() => {
   if (!svg1.value)
     return
+
+  const now = dayjs()
   const e = echarts.init(svg1.value)
   e.setOption({
     visualMap: {
@@ -101,21 +161,47 @@ watchEffect(() => {
       left: 'center',
       top: 0,
     },
-    tooltip: { show: true },
+    tooltip: {
+      show: true,
+      formatter(params) {
+        return get(m, `[${[first(params.value)!]}]`, []).map((e) => {
+          return `<span style="display:inline-flex;width: 50px;text-align:right;">${e.name}</span>: ${e.balance}`
+        }).join('<br/>')
+      },
+
+    },
     calendar: {
+      orient: 'vertical',
       top: 60,
-      left: 20,
-      right: 10,
-      range: '2022',
+      left: 'center',
+      // range: [`${now.format('YYYY')}-01`, now.add(1, 'M').format('YYYY-MM')],
+      range: now.format('YYYY-MM'),
+      cellSize: 20,
       itemStyle: {
         borderWidth: 0.1,
       },
-      yearLabel: { show: true },
+      yearLabel: { show: false },
+      splitLine: {
+        show: false,
+        lineStyle: {
+          color: '#204371',
+          type: 'solid',
+        },
+      },
     },
     series: {
       type: 'heatmap',
       coordinateSystem: 'calendar',
       data: Object.entries(maxWithDate).filter(([, v]) => v > 0),
+      label: {
+        show: true,
+        formatter(params) {
+          return last(params.value)
+        },
+        color: '#fff',
+        fontSize: 8,
+
+      },
     },
   })
 })
@@ -133,13 +219,14 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="h-full w-full ">
+  <div class="h-full">
     <h1 class="text-center mt-1">
       2022 基金分析
     </h1>
-    <div ref="svg" class="w-full h-1/2" />
-    <div ref="svg1" class="w-full h-60" />
+    <div ref="svg" class="w-full h-150" />
+
     <div class="px-2 text-sm">
+      <div ref="svg1" class="h-50 w-50 float-right" />
       <div class="mb-2">
         当前余额:
         <h1 class="text-red mx-1 text-xl">
