@@ -60,7 +60,7 @@ watchEffect(() => {
     return
   const e = echarts.init(svg.value)
   e.setOption({
-    grid: { left: 20, top: 20, bottom: 20, right: 30, containLabel: true },
+    grid: { left: 20, top: 20, bottom: 0, right: 30, containLabel: true },
 
     xAxis: {
       type: 'value',
@@ -83,7 +83,7 @@ watchEffect(() => {
       splitLine: { show: false },
 
       axisLabel: {
-        padding: [0, 0, 20, -10],
+        padding: [0, 0, 10, -5],
         inside: true,
         textStyle: {
           fontSize: 14,
@@ -106,7 +106,7 @@ watchEffect(() => {
       {
         type: 'bar',
         showBackground: true,
-        backgroundStyle: { color: 'transparent', borderRadius: [0, 8, 8, 0] },
+        backgroundStyle: { color: '#ededed', borderRadius: [8, 8, 8, 8] },
         itemStyle: {
           color: '#52A8FF',
           normal: {
@@ -220,19 +220,25 @@ onBeforeMount(() => {
 
 <template>
   <div class="h-full">
-    <h1 class="text-center mt-1">
+    <h1 class="text-center mt-1 bg-gray-100 !mt-0 text-2xl pt-4 pb-2">
       2022 基金分析
     </h1>
-    <div ref="svg" class="w-full h-150" />
-
-    <div class="px-2 text-sm">
-      <div ref="svg1" class="h-50 w-50 float-right" />
-      <div class="mb-2">
-        当前余额:
-        <h1 class="text-red mx-1 text-xl">
-          {{ yue }}元
+    <div class="mb-2 px-5 bg-gray-100 text-gray-500 pb-2">
+      当前余额:
+      <div class="flex items-end">
+        <h1 class="text-red mx-1 text-2xl font-medium">
+          {{ yue }}
         </h1>
+        <div class="mb-0.9">
+          元
+        </div>
       </div>
+    </div>
+    <div ref="svg" class="w-full h-160" />
+
+    <div class="px-2 text-sm pb-4">
+      <div ref="svg1" class="h-42 w-50 float-right" />
+
       <div>
         <span class="text-blue mx-1">{{ value.map((e) => e[0]).join(",") }}</span>共有「<span class="text-red">{{ max
         }}</span>」人捐助了基金。生活真是苦涩又不乏趣味呢！
