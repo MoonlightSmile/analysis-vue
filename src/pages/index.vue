@@ -34,7 +34,7 @@ const dataTotal = $computed(() => {
     return acc
   }, {} as Record<string, number>)
 })
-const c = $computed(() => Object.entries(dataTotal).sort(([_, v1], [__, v2]) => v2 - v1))
+const c = $computed(() => Object.entries(dataTotal).filter(([name]) => Boolean(name)).sort(([_, v1], [__, v2]) => v2 - v1))
 const m = $computed(() => state.list.reduce((acc, item) => {
   const time = dayjs(item.createTime).format('YYYY-MM-DD')
   if (acc[time])
