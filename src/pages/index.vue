@@ -65,7 +65,7 @@ watchEffect(() => {
     xAxis: {
       type: 'value',
       boundaryGap: false,
-      max: 600,
+      max: (Math.ceil(get(c, '[0][1]', 0) / 10) * 10) + 100,
       axisLine: { show: false },
       axisTick: { show: false },
       splitLine: { show: false },
