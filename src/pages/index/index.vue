@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { get } from 'lodash'
+import { get, groupBy, last } from 'lodash'
 import * as echarts from 'echarts'
+import dayjs from 'dayjs'
 import req from '~/utils/request'
 export interface Item {
   balance: number
@@ -15,23 +16,14 @@ interface IAnalysis {
   name: string
   balance_sum: number
 }
-
+const now = dayjs()
 const router = useRouter()
 const svg = ref<HTMLDivElement>()
 const svg1 = ref<HTMLDivElement>()
 const chart = ref<echarts.ECharts>()
 const chart1 = ref<echarts.ECharts>()
 const state = reactive({
-  list: [] as
-    {
-      balance: number
-      createTime: string
-      expenditure: number
-      id: number
-      name: string
-      payReason: string
-      payType: string
-    }[],
+  list: [] as Item[],
   analysis: {
     expenditure: 0,
     overage: 0,
@@ -40,37 +32,9 @@ const state = reactive({
       [] as IAnalysis[],
   },
 })
-// const dataTotal = $computed(() => {
-//   return state.list.reduce((acc, item) => {
-//     if (acc[item.name])
-//       acc[item.name] += Number(item.balance)
-//     else
-//       acc[item.name] = Number(item.balance)
-
-//     return acc
-//   }, {} as Record<string, number>)
-// })
-// const c = $computed(() => Object.entries(dataTotal).filter(([name]) => Boolean(name)).sort(([_, v1], [__, v2]) => v2 - v1))
-// const m = $computed(() => state.list.reduce((acc, item) => {
-//   const time = dayjs(item.createTime).format('YYYY-MM-DD')
-//   if (acc[time])
-//     acc[time].push(item)
-
-//   else
-//     acc[time] = [item]
-
-//   return acc
-// }, {} as Record<string, any[]>))
-// const max = $computed(() => Math.max(...Object.entries(m).map(([, v]) => v.length)))
-// const value = $computed(() => Object.entries(m).filter(([_, items]) => items.length === max))
-// const maxWithDate = $computed(() => Object.entries(m).reduce((acc, item) => {
-//   const time = dayjs(item[0]).format('YYYY-MM-DD')
-
-//   acc[time] = item[1].reduce((a, i) => a += i.balance, 0)
-
-//   return acc
-// }, {} as Record<string, number>))
-// const maxDateV = $computed(() => Object.entries(maxWithDate).sort(([_, v1], [__, v2]) => v2 - v1))
+const groupByTime = $computed(() => {
+  return groupBy(state.list.map(e => ({ ...e, create_time: dayjs(e.create_time).format('YYYY-MM-DD') })), 'create_time')
+})
 watch(() => state.analysis.groupByName, () => {
   if (!chart.value)
     return
@@ -162,6 +126,75 @@ watch(() => state.analysis.groupByName, () => {
   })
 })
 
+watch(() => state.list, () => {
+  if (!chart1.value)
+    return
+  chart1.value.setOption({
+    visualMap: {
+      min: 0,
+      max: 150,
+      type: 'continuous',
+      orient: 'horizontal',
+      left: 'center',
+      top: 0,
+    },
+    tooltip: {
+      show: true,
+      formatter(params: any) {
+        const _groupByName = Object
+          .entries(groupBy(groupByTime[params.data?.[0]], 'name'))
+          .reduce((acc, [name, items]) => {
+            const v = items.reduce((acc, b) => acc + b.balance ?? 0, 0)
+            if (v > 0)
+              acc.push({ name, value: v })
+
+            return acc
+          }, [] as { name: string; value: number }[])
+          .sort((a, b) => b.value - a.value)
+
+        return `<div>
+        <div style="margin-bottom: 8px;color: rgb(191, 68, 76);">${params.data?.[0]}</div>
+        ${_groupByName.map(e => `<div style="display:flex;">${`<div style="width: 50px;text-align: left;">${e.name}</div>: ${e.value}`}</div>`).join('')}</div>`
+      },
+    },
+    calendar: {
+      orient: 'vertical',
+      top: 60,
+      left: 30,
+      bottom: 10,
+      right: 10,
+      range: now.format('YYYY-MM'),
+      itemStyle: {
+        borderWidth: 0.1,
+      },
+      yearLabel: { show: false },
+      splitLine: {
+        show: false,
+        lineStyle: {
+          color: '#204371',
+          type: 'solid',
+        },
+      },
+    },
+    series: {
+      type: 'heatmap',
+      coordinateSystem: 'calendar',
+      data: Object.entries(groupByTime).map(([time, items]) => {
+        return [time, items.reduce((a, b) => { a += b.balance ?? 0; return a }, 0)]
+      }),
+      label: {
+        show: true,
+        formatter(params: any) {
+          return last(params.value)
+        },
+        color: '#fff',
+        fontSize: 8,
+
+      },
+    },
+  })
+})
+
 const onBarClick = (e: any) => {
   router.push(`/${e.name}`)
 }
@@ -173,10 +206,11 @@ onMounted(() => {
   chart.value?.on('click', onBarClick)
 })
 onBeforeMount(() => {
-  chart.value?.off('click', onBarClick)
   req.get<{ data: any[] }>('/list', {
     params: {
       pageSize: 999,
+      startTime: now.startOf('month').format('YYYY-MM-DD'),
+      endTime: now.add(1, 'month').startOf('month').format('YYYY-MM-DD'),
     },
   }).then((e) => {
     state.list = e.data.data
@@ -184,6 +218,10 @@ onBeforeMount(() => {
   req.get('/analysis').then((e) => {
     state.analysis = e.data
   })
+})
+onBeforeUnmount(() => {
+  chart.value?.off('click', onBarClick)
+  chart.value?.dispose()
 })
 </script>
 
@@ -206,7 +244,7 @@ onBeforeMount(() => {
     <div ref="svg" class="w-full h-160" />
 
     <div class="px-2 text-sm pb-4">
-      <!-- <div ref="svg1" class="h-42 w-50 float-right" /> -->
+      <div ref="svg1" class="h-50 w-full " />
 
       <!-- <div>
         <span class="text-blue mx-1">{{ value.map((e) => e[0]).join(",") }}</span>共有「<span class="text-red">{{ max
