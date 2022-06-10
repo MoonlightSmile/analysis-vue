@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
 import * as echarts from 'echarts'
-import { last } from 'lodash'
+import { groupBy, last } from 'lodash'
 import type { Item } from './index.vue'
 import req from '~/utils/request'
 
@@ -18,7 +18,11 @@ onBeforeMount(() => {
       pageSize: 999,
     },
   }).then((res) => {
-    state.list = res.data.data.map(e => ({ ...e, create_time: dayjs(e.create_time).format('YYYY-MM-DD') }))
+    const list = res.data.data.map(e => ({ ...e, create_time: dayjs(e.create_time).format('YYYY-MM-DD') }))
+    state.list = Object.entries(groupBy(list, 'create_time')).reduce((acc, [k, v]) => {
+      acc.push([k, v.reduce((acc, item) => { acc += item.balance; return acc }, 0)])
+      return acc
+    }, [] as any)
   })
 })
 onMounted(() => {
@@ -49,11 +53,10 @@ watch(() => state.list, () => {
     calendar: {
       orient: 'vertical',
       top: 60,
-      left: 40,
-      right: 20,
+      left: 'center',
       bottom: 0,
       range: [`${now.format('YYYY')}-01`, `${now.add(1, 'year').format('YYYY')}-01`],
-      cellSize: 20,
+      cellSize: 40,
       itemStyle: {
         borderWidth: 0.1,
       },
@@ -69,7 +72,7 @@ watch(() => state.list, () => {
     series: {
       type: 'heatmap',
       coordinateSystem: 'calendar',
-      data: state.list.map(e => [e.create_time, e.balance]),
+      data: state.list,
       label: {
         show: true,
         formatter(params: any) {
