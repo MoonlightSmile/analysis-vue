@@ -144,10 +144,9 @@ watch(() => state.list, () => {
         const _groupByName = Object
           .entries(groupBy(groupByTime[params.data?.[0]], 'name'))
           .reduce((acc, [name, items]) => {
-            const v = items.reduce((acc, b) => acc + b.balance ?? 0, 0)
+            const v = items.reduce((acc, b) => { acc += b?.balance ?? 0; return acc }, 0)
             if (v > 0)
               acc.push({ name, value: v })
-
             return acc
           }, [] as { name: string; value: number }[])
           .sort((a, b) => b.value - a.value)

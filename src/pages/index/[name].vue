@@ -20,7 +20,7 @@ onBeforeMount(() => {
   }).then((res) => {
     const list = res.data.data.map(e => ({ ...e, create_time: dayjs(e.create_time).format('YYYY-MM-DD') }))
     state.list = Object.entries(groupBy(list, 'create_time')).reduce((acc, [k, v]) => {
-      acc.push([k, v.reduce((acc, item) => { acc += item.balance; return acc }, 0)])
+      acc.push([k, v.reduce((acc, item) => { acc += item.balance ?? 0; return acc }, 0)])
       return acc
     }, [] as any)
   })
