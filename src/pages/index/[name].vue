@@ -22,7 +22,7 @@ onBeforeMount(() => {
     state.list = Object.entries(groupBy(list, 'create_time')).reduce((acc, [k, v]) => {
       acc.push([k, v.reduce((acc, item) => { acc += item.balance ?? 0; return acc }, 0)])
       return acc
-    }, [] as any)
+    }, [] as any[]).filter(([_, v]) => v > 0)
   })
 })
 onMounted(() => {
