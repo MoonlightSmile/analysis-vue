@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { get, groupBy, last } from 'lodash'
+import { first, get, groupBy, last } from 'lodash'
 import * as echarts from 'echarts'
 import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime.js'
+import 'dayjs/locale/zh-cn.js'
 import req from '~/utils/request'
 export interface Item {
   balance: number
@@ -11,7 +13,10 @@ export interface Item {
   name: string
   pay_reason: string
   pay_type: string
-}
+} // ES 2015
+dayjs.locale('zh-cn')
+dayjs.extend(relativeTime)
+
 interface IAnalysis {
   name: string
   balance_sum: number
@@ -34,6 +39,10 @@ const state = reactive({
 })
 const groupByTime = $computed(() => {
   return groupBy(state.list.map(e => ({ ...e, create_time: dayjs(e.create_time).format('YYYY-MM-DD') })), 'create_time')
+})
+const lastByItem = $computed(() => {
+  const a = state.list.filter(e => e.expenditure > 0).sort((a, b) => dayjs(a.create_time).isBefore(dayjs(b.create_time)) ? 1 : -1)
+  return first(a)
 })
 watch(() => state.analysis.groupByName, () => {
   if (!chart.value)
@@ -229,14 +238,24 @@ onBeforeUnmount(() => {
     <h1 class="text-center mt-1 bg-gray-100 !mt-0 text-2xl pt-4 pb-2">
       2022 基金分析
     </h1>
-    <div class="mb-2 px-5 bg-gray-100 text-gray-500 pb-2">
-      当前余额:
-      <div class="flex items-end">
-        <h1 class="text-red mx-1 text-2xl font-medium">
-          {{ Number(state.analysis.yue).toFixed(2) }}
-        </h1>
-        <div class="mb-0.9">
-          元
+    <div class="mb-2 px-5 bg-gray-100 text-gray-500 pb-2 flex justify-between items-end">
+      <div>
+        <div class="text-xs">
+          当前余额(元)
+        </div>
+        <div class="flex items-end">
+          <h1 class="text-red mx-1 text-2xl font-medium">
+            {{ Number(state.analysis.yue).toFixed(2) }}
+          </h1>
+        </div>
+      </div>
+      <div v-if="lastByItem" class="text-xs flex-col items-center h-full justify-between mb-1">
+        <div>
+          最近消费<span class="px-1 text-#FFA940">{{ dayjs(lastByItem.create_time).fromNow() }}</span>
+        </div>
+
+        <div>
+          for <span class="text-blue">{{ lastByItem.pay_reason }}</span>
         </div>
       </div>
     </div>
