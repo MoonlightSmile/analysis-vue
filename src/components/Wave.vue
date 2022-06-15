@@ -76,6 +76,9 @@ onMounted(() => {
   window.addEventListener('resize', resize)
   resize()
 })
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', resize)
+})
 </script>
 
 <template>
