@@ -204,7 +204,7 @@ watch(() => state.list, () => {
 })
 
 const onBarClick = (e: any) => {
-  router.push(`/${e.name}`)
+  router.push(`/user/${e.name}`)
 }
 onMounted(() => {
   if (svg.value)
@@ -234,28 +234,31 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="h-full">
-    <h1 class="text-center mt-1 bg-gray-100 !mt-0 text-2xl pt-4 pb-2">
-      2022 基金分析
-    </h1>
-    <div class="mb-2 px-5 bg-gray-100 text-gray-500 pb-2 flex justify-between items-end">
-      <div>
-        <div class="text-xs">
-          当前余额(元)
-        </div>
-        <div class="flex items-end">
-          <h1 class="text-red mx-1 text-2xl font-medium">
-            {{ Number(state.analysis.yue).toFixed(2) }}
-          </h1>
-        </div>
-      </div>
-      <div v-if="lastByItem" class="text-xs flex-col items-center h-full justify-between mb-1">
+  <div class="h-full relative">
+    <Wave />
+    <div class="absolute top-0 w-full">
+      <h1 class="text-center mt-1 bg-gray-100 !mt-0 text-2xl pt-4 pb-2">
+        2022 基金分析
+      </h1>
+      <div class="mb-2 px-5 bg-gray-100 text-gray-500 pb-2 flex justify-between items-end">
         <div>
-          最近消费<span class="px-1 text-#FFA940">{{ dayjs(lastByItem.create_time).fromNow() }}</span>
+          <div class="text-xs">
+            当前余额(元)
+          </div>
+          <div class="flex items-end">
+            <h1 class="text-red mx-1 text-2xl font-medium">
+              {{ Number(state.analysis.yue).toFixed(2) }}
+            </h1>
+          </div>
         </div>
+        <div v-if="lastByItem" class="text-xs flex-col items-center h-full justify-between mb-1">
+          <div>
+            最近消费<span class="px-1 text-#FFA940">{{ dayjs(lastByItem.create_time).fromNow() }}</span>
+          </div>
 
-        <div>
-          for <span class="text-blue">{{ lastByItem.pay_reason }}</span>
+          <div>
+            for <span class="text-blue">{{ lastByItem.pay_reason }}</span>
+          </div>
         </div>
       </div>
     </div>
