@@ -43,6 +43,9 @@ watch(() => state.list, () => {
       orient: 'horizontal',
       left: 'center',
       top: 0,
+      inRange: {
+        color: ['#86efac', '#16a34a'], // From smaller to bigger value ->
+      },
     },
     tooltip: {
       show: true,

@@ -100,27 +100,7 @@ watch(() => state.analysis.groupByName, () => {
           color: '#52A8FF',
           normal: {
             borderRadius: [8, 8, 8, 8],
-            color(params: any) {
-              // 定义一个颜色集合
-              const colorList = [
-                '#52A8FF',
-                '#00B389',
-                '#FFA940',
-                '#FF5A57',
-                '#29EFC4',
-                '#F8AEA4',
-                '#FFC53D',
-                '#009982',
-                '#C099FC',
-                '#F5855F',
-                '#F5855F',
-                '#F5855F',
-                '#F5855F',
-                '#F5855F',
-              ]
-              // 对每个bar显示一种颜色
-              return colorList[params.dataIndex]
-            },
+            color: '#86efac',
           },
         },
         barMaxWidth: 16,
@@ -164,7 +144,7 @@ watch(() => state.list, () => {
           .sort((a, b) => b.value - a.value)
 
         return `<div>
-        <div style="margin-bottom: 8px;color: rgb(191, 68, 76);">${params.data?.[0]}</div>
+        <div style="margin-bottom: 8px;color: #86efac;">${params.data?.[0]}</div>
         ${_groupByName.map(e => `<div style="display:flex;">${`<div style="width: 50px;text-align: left;">${e.name}</div>: ${e.value}`}</div>`).join('')}</div>`
       },
     },
