@@ -2,7 +2,7 @@
 import dayjs from 'dayjs'
 import * as echarts from 'echarts'
 import { groupBy, last } from 'lodash'
-import type { Item } from './index.vue'
+import type { Item } from '../index/index.vue'
 import req from '~/utils/request'
 
 const { params: { name } } = useRoute()
