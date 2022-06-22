@@ -16,10 +16,22 @@ export interface Item {
 } // ES 2015
 dayjs.locale('zh-cn')
 dayjs.extend(relativeTime)
+const enum EPicker {
+  'week' = 'week',
+  'month' = 'month',
+  'year' = 'year',
+}
+type TPicker = keyof typeof EPicker
 
 interface IAnalysis {
   name: string
   balance_sum: number
+}
+
+const pickerMap = {
+  week: '本周',
+  month: '本月',
+  year: '本年',
 }
 const now = dayjs()
 const router = useRouter()
@@ -36,6 +48,8 @@ const state = reactive({
     groupByName:
       [] as IAnalysis[],
   },
+  timePicker: EPicker.year as TPicker,
+  names: [] as string[],
 })
 const groupByTime = $computed(() => {
   return groupBy(state.list.map(e => ({ ...e, create_time: dayjs(e.create_time).format('YYYY-MM-DD') })), 'create_time')
@@ -208,18 +222,58 @@ onBeforeMount(() => {
   })
   req.get('/analysis').then((e) => {
     state.analysis = e.data
+    state.names = e.data.groupByName.map((e: any) => e.name)
+  })
+})
+const timePickerPatams = $computed(() => {
+  switch (state.timePicker) {
+    case 'month':
+      return {
+        startTime: now.startOf('month').format('YYYY-MM-DD'),
+        endTime: now.add(1, 'month').startOf('month').format('YYYY-MM-DD'),
+      }
+    case 'year':
+      return {
+        startTime: now.startOf('year').format('YYYY-MM-DD'),
+        endTime: now.add(1, 'year').startOf('year').format('YYYY-MM-DD'),
+      }
+    case 'week':
+      return {
+        startTime: now.startOf('week').format('YYYY-MM-DD'),
+        endTime: now.endOf('week').format('YYYY-MM-DD'),
+      }
+    default:
+      return {
+        startTime: now.startOf('year').format('YYYY-MM-DD'),
+        endTime: now.add(1, 'year').startOf('year').format('YYYY-MM-DD'),
+      }
+  }
+})
+watchEffect(() => {
+  req.get('/analysis', {
+    params: timePickerPatams,
+  }).then((res) => {
+    state.analysis.groupByName = state.names.map((e) => {
+      const item = res.data.groupByName.find((e1: any) => e1.name === e)
+      return item || {
+        name: e,
+        balance_sum: 0,
+      }
+    }).sort((a, b) => b.balance_sum - a.balance_sum)
   })
 })
 onBeforeUnmount(() => {
   chart.value?.off('click', onBarClick)
   chart.value?.dispose()
 })
+const onPickerClick = (p: TPicker) => {
+  state.timePicker = p
+}
 </script>
 
 <template>
   <div class="h-full relative">
-    <Wave />
-    <div class="absolute top-0 w-full">
+    <div class="top-0 w-full">
       <h1 class="text-center mt-1 bg-gray-100 !mt-0 text-2xl pt-4 pb-2">
         2022 基金分析
       </h1>
@@ -243,6 +297,14 @@ onBeforeUnmount(() => {
             for <span class="text-blue">{{ lastByItem.pay_reason }}</span>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="flex justify-around">
+      <div
+        v-for="(v, k) in pickerMap" :key="k" :class="state.timePicker === k && 'text-green-300'"
+        @click="onPickerClick(k)"
+      >
+        {{ v }}
       </div>
     </div>
     <div ref="svg" class="w-full h-160" />
