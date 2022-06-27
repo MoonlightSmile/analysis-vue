@@ -10,6 +10,7 @@ const svg = ref<HTMLDivElement>()
 const charts = ref<echarts.ECharts>()
 const state = reactive({
   list: [] as Item[],
+  timeMap: new Map<string, Item[]>(),
 })
 onBeforeMount(() => {
   req.get<{ data: any[] }>('/list', {
@@ -20,6 +21,7 @@ onBeforeMount(() => {
   }).then((res) => {
     const list = res.data.data.map(e => ({ ...e, create_time: dayjs(e.create_time).format('YYYY-MM-DD') }))
     state.list = Object.entries(groupBy(list, 'create_time')).reduce((acc, [k, v]) => {
+      state.timeMap.set(k, v)
       acc.push([k, v.reduce((acc, item) => { acc += item.balance ?? 0; return acc }, 0)])
       return acc
     }, [] as any[]).filter(([_, v]) => v > 0)
@@ -50,7 +52,8 @@ watch(() => state.list, () => {
     tooltip: {
       show: true,
       formatter(params: any) {
-        return params.data?.[0]
+        const v = state.timeMap.get(params.data?.[0])?.sort((a, b) => b.balance - a.balance) ?? []
+        return `${params.data?.[0]}<br>${v.map((e) => { return `<span><span style="color: #86efac">${e.balance}</span>  ${e.pay_reason}</span>` }).join('<br>')}`
       },
     },
     calendar: {
