@@ -254,7 +254,7 @@ watchEffect(() => {
     params: timePickerPatams,
   }).then((res) => {
     state.analysis.groupByName = state.names.map((e) => {
-      const item = res.data.groupByName.find((e1: any) => e1.name === e)
+      const item = (res.data.groupByName ?? []).find((e1: any) => e1.name === e)
       return item || {
         name: e,
         balance_sum: 0,
