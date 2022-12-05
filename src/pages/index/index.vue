@@ -111,10 +111,10 @@ watch(() => state.analysis.groupByName, () => {
         showBackground: true,
         backgroundStyle: { color: '#ededed', borderRadius: [8, 8, 8, 8] },
         itemStyle: {
-          color: '#52A8FF',
+          color: '#845EC2',
           normal: {
             borderRadius: [8, 8, 8, 8],
-            color: '#86efac',
+            color: '#845EC2',
           },
         },
         barMaxWidth: 16,
@@ -141,7 +141,7 @@ watch(() => state.list, () => {
       left: 'center',
       top: 0,
       inRange: {
-        color: ['#86efac', '#16a34a'], // From smaller to bigger value ->
+        color: ['#D5CCE3', '#845EC2'], // From smaller to bigger value ->
       },
     },
     tooltip: {
@@ -158,7 +158,7 @@ watch(() => state.list, () => {
           .sort((a, b) => b.value - a.value)
 
         return `<div>
-        <div style="margin-bottom: 8px;color: #86efac;">${params.data?.[0]}</div>
+        <div style="margin-bottom: 8px;color: #845EC2;">${params.data?.[0]}</div>
         ${_groupByName.map(e => `<div style="display:flex;">${`<div style="width: 50px;text-align: left;">${e.name}</div>: ${e.value}`}</div>`).join('')}</div>`
       },
     },
@@ -301,7 +301,7 @@ const onPickerClick = (p: TPicker) => {
     </div>
     <div class="flex justify-around">
       <div
-        v-for="(v, k) in pickerMap" :key="k" :class="state.timePicker === k && 'text-green-300'"
+        v-for="(v, k) in pickerMap" :key="k" :class="state.timePicker === k && 'text-#845EC2'"
         @click="onPickerClick(k)"
       >
         {{ v }}

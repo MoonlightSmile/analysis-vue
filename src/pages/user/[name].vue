@@ -46,14 +46,14 @@ watch(() => state.list, () => {
       left: 'center',
       top: 0,
       inRange: {
-        color: ['#86efac', '#16a34a'], // From smaller to bigger value ->
+        color: ['#D5CCE3', '#845EC2'], // From smaller to bigger value ->
       },
     },
     tooltip: {
       show: true,
       formatter(params: any) {
         const v = state.timeMap.get(params.data?.[0])?.sort((a, b) => b.balance - a.balance) ?? []
-        return `${params.data?.[0]}<br>${v.map((e) => { return `<span><span style="color: #86efac">${e.balance}</span>  ${e.pay_reason}</span>` }).join('<br>')}`
+        return `${params.data?.[0]}<br>${v.map((e) => { return `<span><span style="color: #845EC2">${e.balance}</span>  ${e.pay_reason}</span>` }).join('<br>')}`
       },
     },
     calendar: {
