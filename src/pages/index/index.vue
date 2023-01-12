@@ -20,6 +20,7 @@ const enum EPicker {
   'week' = 'week',
   'month' = 'month',
   'year' = 'year',
+  'all' = 'all',
 }
 type TPicker = keyof typeof EPicker
 
@@ -32,6 +33,7 @@ const pickerMap = {
   week: '本周',
   month: '本月',
   year: '本年',
+  all: '累计',
 }
 const now = dayjs()
 const router = useRouter()
@@ -48,7 +50,7 @@ const state = reactive({
     groupByName:
       [] as IAnalysis[],
   },
-  timePicker: EPicker.year as TPicker,
+  timePicker: EPicker.all,
   names: [] as string[],
 })
 const groupByTime = $computed(() => {
@@ -220,7 +222,7 @@ onBeforeMount(() => {
   }).then((e) => {
     state.list = e.data.data
   })
-  req.get('/analysis').then((e) => {
+  req.get('/analysis', { params: timePickerPatams }).then((e) => {
     state.analysis = e.data
     state.names = e.data.groupByName.map((e: any) => e.name)
   })
@@ -244,7 +246,7 @@ const timePickerPatams = $computed(() => {
       }
     default:
       return {
-        startTime: now.startOf('year').format('YYYY-MM-DD'),
+        startTime: '2022-01-01',
         endTime: now.add(1, 'year').startOf('year').format('YYYY-MM-DD'),
       }
   }
@@ -275,7 +277,7 @@ const onPickerClick = (p: TPicker) => {
   <div class="h-full relative">
     <div class="top-0 w-full">
       <h1 class="text-center mt-1 bg-gray-100 !mt-0 text-2xl pt-4 pb-2">
-        2022 基金分析
+        2022 - {{ now.year() }} 基金分析
       </h1>
       <div class="mb-2 px-5 bg-gray-100 text-gray-500 pb-2 flex justify-between items-end">
         <div>
