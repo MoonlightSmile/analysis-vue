@@ -50,7 +50,7 @@ const state = reactive({
     groupByName:
       [] as IAnalysis[],
   },
-  timePicker: EPicker.all,
+  timePicker: EPicker.all as EPicker,
   names: [] as string[],
 })
 const groupByTime = $computed(() => {
@@ -60,6 +60,32 @@ const lastByItem = $computed(() => {
   const a = state.list.filter(e => e.expenditure > 0).sort((a, b) => dayjs(a.create_time).isBefore(dayjs(b.create_time)) ? 1 : -1)
   return first(a)
 })
+
+const timePickerPatams = $computed(() => {
+  switch (state.timePicker) {
+    case 'month':
+      return {
+        startTime: now.startOf('month').format('YYYY-MM-DD'),
+        endTime: now.add(1, 'month').startOf('month').format('YYYY-MM-DD'),
+      }
+    case 'year':
+      return {
+        startTime: now.startOf('year').format('YYYY-MM-DD'),
+        endTime: now.add(1, 'year').startOf('year').format('YYYY-MM-DD'),
+      }
+    case 'week':
+      return {
+        startTime: now.startOf('week').format('YYYY-MM-DD'),
+        endTime: now.endOf('week').format('YYYY-MM-DD'),
+      }
+    default:
+      return {
+        startTime: '2022-01-01',
+        endTime: now.add(1, 'year').startOf('year').format('YYYY-MM-DD'),
+      }
+  }
+})
+
 watch(() => state.analysis.groupByName, () => {
   if (!chart.value)
     return
@@ -227,30 +253,7 @@ onBeforeMount(() => {
     state.names = e.data.groupByName.map((e: any) => e.name)
   })
 })
-const timePickerPatams = $computed(() => {
-  switch (state.timePicker) {
-    case 'month':
-      return {
-        startTime: now.startOf('month').format('YYYY-MM-DD'),
-        endTime: now.add(1, 'month').startOf('month').format('YYYY-MM-DD'),
-      }
-    case 'year':
-      return {
-        startTime: now.startOf('year').format('YYYY-MM-DD'),
-        endTime: now.add(1, 'year').startOf('year').format('YYYY-MM-DD'),
-      }
-    case 'week':
-      return {
-        startTime: now.startOf('week').format('YYYY-MM-DD'),
-        endTime: now.endOf('week').format('YYYY-MM-DD'),
-      }
-    default:
-      return {
-        startTime: '2022-01-01',
-        endTime: now.add(1, 'year').startOf('year').format('YYYY-MM-DD'),
-      }
-  }
-})
+
 watchEffect(() => {
   req.get('/analysis', {
     params: timePickerPatams,
