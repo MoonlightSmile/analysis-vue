@@ -5,30 +5,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <title>2022 基金分析 </title>
+  <title>数据组基金分析</title>
   <meta name="description" content="Opinionated Vite Starter Template">
   <script>
     var _hmt = _hmt || [];
     (function () {
       const hm = document.createElement('script')
-  hm.src = 'https://hm.baidu.com/hm.js?8ad9c6625963ba846d573721e9d34538'
-  const s = document.getElementsByTagName('script')[0]
-  s.parentNode.insertBefore(hm, s)
-})()
-    </script>
-    
+      hm.src = 'https://hm.baidu.com/hm.js?8ad9c6625963ba846d573721e9d34538'
+      const s = document.getElementsByTagName('script')[0]
+      s.parentNode.insertBefore(hm, s)
+    })()
+  </script>
+
 </head>
 
 <body class="font-sans dark:text-white dark:bg-hex-121212">
   <div id="app"></div>
-  
+
   <script>
-    (function () {
-      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-      const setting = localStorage.getItem('color-schema') || 'auto'
-      if (setting === 'dark' || (prefersDark && setting !== 'light'))
-        document.documentElement.classList.toggle('dark', true)
-    })()
+      (function () {
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        const setting = localStorage.getItem('color-schema') || 'auto'
+        if (setting === 'dark' || (prefersDark && setting !== 'light'))
+          document.documentElement.classList.toggle('dark', true)
+      })()
   </script>
   <script type="module" src="/src/main.ts"></script>
 </body>
