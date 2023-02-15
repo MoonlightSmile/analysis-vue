@@ -312,7 +312,7 @@ const onPickerClick = (p: TPicker) => {
         {{ v }}
       </div>
     </div>
-    <div ref="svg" class="w-full h-160" />
+    <div ref="svg" class="w-full h-220" />
 
     <div class="px-2 text-sm pb-4">
       <div ref="svg1" class="h-50 w-full " />
